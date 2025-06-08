@@ -2,20 +2,32 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>動漫問答遊戲</title>
+  <title>青春動漫大亂抽！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+      margin: 0;
+      padding-top: 60px; /* 留空間給固定標題列 */
+      box-sizing: border-box;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 1rem;
-      box-sizing: border-box;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2a2a2a;
+      z-index: 999;
     }
 
     .quiz-box {
@@ -24,7 +36,8 @@
       padding: 2rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       max-width: 450px;
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -76,30 +89,20 @@
     .restart:hover {
       background-color: #0056b3;
     }
-
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      padding: 0.5rem 0;
-      background-color: rgba(255, 255, 255, 0.8);
-      font-weight: bold;
-      color: #333;
-      font-size: 1rem;
-    }
   </style>
 </head>
 <body>
+  <!-- 最上方固定的抬頭 -->
+  <div class="header">🎉 青春動漫大亂抽！</div>
+
+  <!-- 問答主畫面 -->
   <div class="quiz-box">
-    <h1>動漫問答挑戰</h1>
+    <h1>你抽你上！看看你是主角還是反派？</h1>
     <div class="question" id="question"></div>
     <div class="options" id="options"></div>
     <div class="result" id="result"></div>
     <button class="restart" id="restart">再挑戰一次</button>
   </div>
-
-  <footer class="footer">精武圖書館</footer>
 
   <script>
     const questions = [
