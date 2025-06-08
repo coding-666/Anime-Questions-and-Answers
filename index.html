@@ -15,7 +15,9 @@
       height: 100vh;
       margin: 0;
       padding: 1rem;
+      box-sizing: border-box;
     }
+
     .quiz-box {
       background-color: #ffffff;
       border-radius: 1rem;
@@ -25,14 +27,17 @@
       width: 100%;
       text-align: center;
     }
+
     h1 {
       color: #333;
       margin-bottom: 1.5rem;
     }
+
     .question {
       font-size: 1.25rem;
       margin-bottom: 1rem;
     }
+
     .options button {
       display: block;
       width: 100%;
@@ -45,14 +50,17 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
     .options button:hover {
       background-color: #d0ebff;
     }
+
     .result {
       margin-top: 1rem;
       font-weight: bold;
       font-size: 1.2rem;
     }
+
     .restart {
       display: none;
       margin-top: 1.5rem;
@@ -64,8 +72,21 @@
       border-radius: 0.5rem;
       cursor: pointer;
     }
+
     .restart:hover {
       background-color: #0056b3;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-weight: bold;
+      color: #333;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -77,6 +98,8 @@
     <div class="result" id="result"></div>
     <button class="restart" id="restart">再挑戰一次</button>
   </div>
+
+  <footer class="footer">精武圖書館</footer>
 
   <script>
     const questions = [
@@ -104,6 +127,56 @@
         question: "哪部作品中有角色名叫櫻木花道？",
         options: ["灌籃高手", "鬼滅之刃", "進擊的巨人", "七龍珠"],
         answer: "灌籃高手"
+      },
+      {
+        question: "《進擊的巨人》中，主角艾連的姓是什麼？",
+        options: ["葉卡", "阿克曼", "艾爾迪亞", "艾爾文"],
+        answer: "葉卡"
+      },
+      {
+        question: "《七龍珠》中，悟空的招牌招式是？",
+        options: ["螺旋丸", "龜派氣功", "雷切", "一閃"],
+        answer: "龜派氣功"
+      },
+      {
+        question: "《火影忍者》中，宇智波佐助的哥哥是？",
+        options: ["卡卡西", "我愛羅", "鼬", "大蛇丸"],
+        answer: "鼬"
+      },
+      {
+        question: "《死亡筆記本》中，L是什麼身份？",
+        options: ["神秘殺手", "偵探", "高中生", "死神"],
+        answer: "偵探"
+      },
+      {
+        question: "《刀劍神域》中，男主角的名字是？",
+        options: ["桐人", "炭治郎", "艾連", "悟空"],
+        answer: "桐人"
+      },
+      {
+        question: "《我的英雄學院》中，歐爾麥特的能力叫什麼？",
+        options: ["One For All", "影分身", "寫輪眼", "念"],
+        answer: "One For All"
+      },
+      {
+        question: "《東京喰種》的主角是誰？",
+        options: ["金木研", "五條悟", "柯南", "桐人"],
+        answer: "金木研"
+      },
+      {
+        question: "《排球少年》中，日向翔陽的搭檔是誰？",
+        options: ["影山飛雄", "牛島若利", "月島螢", "及川徹"],
+        answer: "影山飛雄"
+      },
+      {
+        question: "《黑色五葉草》中，亞斯塔沒有什麼？",
+        options: ["魔力", "朋友", "敵人", "夢想"],
+        answer: "魔力"
+      },
+      {
+        question: "《BLEACH 死神》中，黑崎一護的武器叫什麼？",
+        options: ["斬魄刀", "妖刀村正", "十拳劍", "武裝色霸氣"],
+        answer: "斬魄刀"
       }
     ];
 
