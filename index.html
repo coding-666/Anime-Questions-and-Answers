@@ -1,221 +1,306 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>精武圖書館 X 青春動漫大亂抽！</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
-      margin: 0;
-      padding-top: 60px; /* 留空間給固定標題列 */
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8">
+  <title>精武圖書館 X 青春動漫大亂抽！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+      margin: 0;
+      padding-top: 60px;
+      box-sizing: border-box;
+    }
 
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #2a2a2a;
-      z-index: 999;
-    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2a2a2a;
+      z-index: 999;
+    }
 
-    .quiz-box {
-      background-color: #ffffff;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 450px;
-      width: 95%;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-    h1 {
-      color: #333;
-      margin-bottom: 1.5rem;
-    }
+    .instructions ul {
+      text-align: left;
+      padding-left: 1.2rem;
+    }
 
-    .question {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
+    .instructions li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
 
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      background-color: #f7f9fc;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+    .start-btn {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
 
-    .options button:hover {
-      background-color: #d0ebff;
-    }
+    .start-btn:hover {
+      background-color: #218838;
+    }
 
-    .result {
-      margin-top: 1rem;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+    .quiz-box {
+      display: none;
+      margin-top: 2rem;
+      text-align: center;
+    }
 
-    .restart {
-      display: none;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.5rem;
-      font-size: 1rem;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-    }
+    .quiz-box .question a {
+      font-size: 0.9rem;
+      color: #007bff;
+      text-decoration: none;
+    }
 
-    .restart:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    .quiz-box .question a:hover {
+      text-decoration: underline;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      background-color: #f7f9fc;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .options button:hover {
+      background-color: #d0ebff;
+    }
+
+    .result {
+      margin-top: 1rem;
+      font-size: 1rem;
+      background-color: #e9ffe9;
+      border-left: 4px solid #33cc33;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      text-align: left;
+      color: #006600;
+    }
+
+    .result ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .restart {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .restart:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <!-- 最上方固定的抬頭 -->
-  <div class="header">亂抽即命運，知識即勝利</div>
+  <div class="header">🎉 精武圖書館 X 青春動漫大亂抽！</div>
 
-  <!-- 問答主畫面 -->
-  <div class="quiz-box">
-    <div class="question" id="question"></div>
-    <div class="options" id="options"></div>
-    <div class="result" id="result"></div>
-    <button class="restart" id="restart">再挑戰一次</button>
-  </div>
+  <div class="container" id="intro">
+    <h2>📚 活動說明</h2>
+    <div class="instructions">
+      <ul>
+        <li>答對一題即可參加抽獎！</li>
+        <li>每人限參加一次。</li>
+        <li>完成後請出示畫面給工作人員。</li>
+        <li>抽獎需扣 <strong>1 點閱讀點數</strong>。</li>
+        <li>活動期間內，限量禮物抽完為止 🎁</li>
+      </ul>
+    </div>
+    <button class="start-btn" onclick="startQuiz()">問答開始</button>
+  </div>
 
-  <script>
-    const questions = [
-      {
-        question: "《鬼滅之刃》中，主角的名字是？",
-        options: ["魯夫", "炭治郎", "櫻木花道", "鳴人"],
-        answer: "炭治郎"
-      },
-      {
-        question: "《航海王》中，魯夫的夢想是什麼？",
-        options: ["成為火影", "當上最強劍士", "找到One Piece 成為海賊王", "打敗魔王"],
-        answer: "找到One Piece 成為海賊王"
-      },
-      {
-        question: "《咒術迴戰》裡，五條悟的能力是？",
-        options: ["無量空處", "寫輪眼", "影分身", "超級賽亞人"],
-        answer: "無量空處"
-      },
-      {
-        question: "下列哪個角色是來自《名偵探柯南》？",
-        options: ["江戶川柯南", "夜神月", "炭治郎", "井上雄彥"],
-        answer: "江戶川柯南"
-      },
-      {
-        question: "哪部作品中有角色名叫櫻木花道？",
-        options: ["灌籃高手", "鬼滅之刃", "進擊的巨人", "七龍珠"],
-        answer: "灌籃高手"
-      },
-      {
-        question: "《進擊的巨人》中，主角艾連的姓是什麼？",
-        options: ["葉卡", "阿克曼", "艾爾迪亞", "艾爾文"],
-        answer: "葉卡"
-      },
-      {
-        question: "《七龍珠》中，悟空的招牌招式是？",
-        options: ["螺旋丸", "龜派氣功", "雷切", "一閃"],
-        answer: "龜派氣功"
-      },
-      {
-        question: "《火影忍者》中，宇智波佐助的哥哥是？",
-        options: ["卡卡西", "我愛羅", "鼬", "大蛇丸"],
-        answer: "鼬"
-      },
-      {
-        question: "《死亡筆記本》中，L是什麼身份？",
-        options: ["神秘殺手", "偵探", "高中生", "死神"],
-        answer: "偵探"
-      },
-      {
-        question: "《刀劍神域》中，男主角的名字是？",
-        options: ["桐人", "炭治郎", "艾連", "悟空"],
-        answer: "桐人"
-      },
-      {
-        question: "《我的英雄學院》中，歐爾麥特的能力叫什麼？",
-        options: ["One For All", "影分身", "寫輪眼", "念"],
-        answer: "One For All"
-      },
-      {
-        question: "《東京喰種》的主角是誰？",
-        options: ["金木研", "五條悟", "柯南", "桐人"],
-        answer: "金木研"
-      },
-      {
-        question: "《排球少年》中，日向翔陽的搭檔是誰？",
-        options: ["影山飛雄", "牛島若利", "月島螢", "及川徹"],
-        answer: "影山飛雄"
-      },
-      {
-        question: "《黑色五葉草》中，亞斯塔沒有什麼？",
-        options: ["魔力", "朋友", "敵人", "夢想"],
-        answer: "魔力"
-      },
-      {
-        question: "《BLEACH 死神》中，黑崎一護的武器叫什麼？",
-        options: ["斬魄刀", "妖刀村正", "十拳劍", "武裝色霸氣"],
-        answer: "斬魄刀"
-      }
-    ];
+  <div class="container quiz-box" id="quiz">
+    <h1>亂抽即命運，知識即勝利</h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="result" id="result"></div>
+    <button class="restart" id="restart">再挑戰一次</button>
+  </div>
 
-    let current;
+  <script>
+    const questions = [
+  {
+    question: "《鬼滅之刃》中，主角的名字是？",
+    options: ["魯夫", "炭治郎", "櫻木花道", "鳴人"],
+    answer: "炭治郎",
+    link: "https://zh.wikipedia.org/wiki/鬼滅之刃"
+  },
+  {
+    question: "《航海王》中，魯夫的夢想是什麼？",
+    options: ["成為火影", "當上最強劍士", "找到One Piece 成為海賊王", "打敗魔王"],
+    answer: "找到One Piece 成為海賊王",
+    link: "https://zh.wikipedia.org/wiki/ONE_PIECE"
+  },
+  {
+    question: "《咒術迴戰》裡，五條悟的能力是？",
+    options: ["無量空處", "寫輪眼", "影分身", "超級賽亞人"],
+    answer: "無量空處",
+    link: "https://zh.wikipedia.org/wiki/咒術迴戰"
+  },
+  {
+    question: "下列哪個角色是來自《名偵探柯南》？",
+    options: ["江戶川柯南", "夜神月", "炭治郎", "井上雄彥"],
+    answer: "江戶川柯南",
+    link: "https://zh.wikipedia.org/wiki/名偵探柯南"
+  },
+  {
+    question: "哪部作品中有角色名叫櫻木花道？",
+    options: ["灌籃高手", "鬼滅之刃", "進擊的巨人", "七龍珠"],
+    answer: "灌籃高手",
+    link: "https://zh.wikipedia.org/wiki/灌籃高手"
+  },
+  {
+    question: "《進擊的巨人》中，主角艾連的姓是什麼？",
+    options: ["葉卡", "阿克曼", "艾爾迪亞", "艾爾文"],
+    answer: "葉卡",
+    link: "https://zh.wikipedia.org/wiki/進擊的巨人"
+  },
+  {
+    question: "《七龍珠》中，悟空的招牌招式是？",
+    options: ["螺旋丸", "龜派氣功", "雷切", "一閃"],
+    answer: "龜派氣功",
+    link: "https://zh.wikipedia.org/wiki/七龍珠"
+  },
+  {
+    question: "《火影忍者》中，宇智波佐助的哥哥是？",
+    options: ["卡卡西", "我愛羅", "鼬", "大蛇丸"],
+    answer: "鼬",
+    link: "https://zh.wikipedia.org/wiki/火影忍者"
+  },
+  {
+    question: "《死亡筆記本》中，L是什麼身份？",
+    options: ["神秘殺手", "偵探", "高中生", "死神"],
+    answer: "偵探",
+    link: "https://zh.wikipedia.org/wiki/死亡筆記本"
+  },
+  {
+    question: "《刀劍神域》中，男主角的名字是？",
+    options: ["桐人", "炭治郎", "艾連", "悟空"],
+    answer: "桐人",
+    link: "https://zh.wikipedia.org/wiki/刀劍神域"
+  },
+  {
+    question: "《我的英雄學院》中，歐爾麥特的能力叫什麼？",
+    options: ["One For All", "影分身", "寫輪眼", "念"],
+    answer: "One For All",
+    link: "https://zh.wikipedia.org/wiki/我的英雄學院"
+  },
+  {
+    question: "《東京喰種》的主角是誰？",
+    options: ["金木研", "五條悟", "柯南", "桐人"],
+    answer: "金木研",
+    link: "https://zh.wikipedia.org/wiki/東京喰種"
+  },
+  {
+    question: "《排球少年》中，日向翔陽的搭檔是誰？",
+    options: ["影山飛雄", "牛島若利", "月島螢", "及川徹"],
+    answer: "影山飛雄",
+    link: "https://zh.wikipedia.org/wiki/排球少年"
+  },
+  {
+    question: "《黑色五葉草》中，亞斯塔沒有什麼？",
+    options: ["魔力", "朋友", "敵人", "夢想"],
+    answer: "魔力",
+    link: "https://zh.wikipedia.org/wiki/黑色五葉草"
+  },
+  {
+    question: "《BLEACH 死神》中，黑崎一護的武器叫什麼？",
+    options: ["斬魄刀", "妖刀村正", "十拳劍", "武裝色霸氣"],
+    answer: "斬魄刀",
+    link: "https://zh.wikipedia.org/wiki/BLEACH"
+  }
+];
 
-    function loadQuestion() {
-      const index = Math.floor(Math.random() * questions.length);
-      current = questions[index];
-      document.getElementById("question").textContent = current.question;
+    let current;
 
-      const optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
-      current.options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.textContent = opt;
-        btn.onclick = () => checkAnswer(opt);
-        optionsDiv.appendChild(btn);
-      });
+    function startQuiz() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      loadQuestion();
+    }
 
-      document.getElementById("result").textContent = "";
-      document.getElementById("restart").style.display = "none";
-    }
+    function loadQuestion() {
+      const index = Math.floor(Math.random() * questions.length);
+      current = questions[index];
+      document.getElementById("question").innerHTML = `
+        <div>${current.question}</div>
+        <div style="margin-top: 0.5rem;">
+          🔗 <a href="${current.link}" target="_blank">前往作品介紹</a>
+        </div>
+      `;
 
-    function checkAnswer(choice) {
-      const resultDiv = document.getElementById("result");
-      if (choice === current.answer) {
-        resultDiv.textContent = "✅ 恭喜答對！手機或是自動借還書機借10本書👉帶著個人證書證👉至櫃台扣1點閱讀點數🟰抽1次小禮💫。一張證卡限抽一次";
-        resultDiv.style.color = "green";
-      } else {
-        resultDiv.textContent = "❌ 答錯了！請再試一次。";
-        resultDiv.style.color = "red";
-      }
-      document.getElementById("restart").style.display = "inline-block";
-    }
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      current.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt);
+        optionsDiv.appendChild(btn);
+      });
 
-    document.getElementById("restart").addEventListener("click", loadQuestion);
-    window.onload = loadQuestion;
-  </script>
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("restart").style.display = "none";
+    }
+
+    function checkAnswer(choice) {
+      const resultDiv = document.getElementById("result");
+      if (choice === current.answer) {
+        resultDiv.innerHTML = `
+          <p><strong>✅ 恭喜答對！</strong></p>
+          <ul>
+            <li>手機或自動借還書機借 <strong>10 本書</strong></li>
+            <li>帶著 <strong>個人證書證</strong></li>
+            <li>至櫃台 <strong>扣 1 點閱讀點數</strong></li>
+            <li>🎁 可抽 <strong>1 次小禮物</strong></li>
+            <li style="color:#666;">※ 一張證卡限抽一次</li>
+          </ul>
+        `;
+      } else {
+        resultDiv.innerHTML = `<p style="color:red;">❌ 答錯了！請再試一次。</p>`;
+      }
+      document.getElementById("restart").style.display = "inline-block";
+    }
+
+    document.getElementById("restart").addEventListener("click", loadQuestion);
+  </script>
 </body>
 </html>
