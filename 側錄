@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>側錄按鍵精靈</title>
+<style>
+  button { margin: 5px; padding: 10px; }
+  #log { margin-top: 20px; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; }
+</style>
+</head>
+<body>
+
+<h2>側錄按鍵精靈</h2>
+<button id="startRecord">開始錄製</button>
+<button id="stopRecord">停止錄製</button>
+<button id="playMacro">播放操作</button>
+<input type="number" id="loopCount" value="1" min="1"> 循環次數
+
+<div id="log"></div>
+
+<script>
+let recording = false;
+let events = [];
+
+function log(msg) {
+    const logDiv = document.getElementById('log');
+    logDiv.innerHTML += msg + "<br>";
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+// 記錄時間差
+let lastTime = null;
+
+document.getElementById('startRecord').onclick = () => {
+    recording = true;
+    events = [];
+    lastTime = Date.now();
+    log("開始錄製...");
+};
+
+document.getElementById('stopRecord').onclick = () => {
+    recording = false;
+    log("停止錄製，共 " + events.length + " 個事件");
+};
+
+document.addEventListener('click', e => {
+    if (!recording) return;
+    const time = Date.now();
+    const delay = lastTime ? time - lastTime : 0;
+    lastTime = time;
+    events.push({ type: 'click', x: e.clientX, y: e.clientY, delay });
+    log(`點擊：(${e.clientX}, ${e.clientY}), 延遲 ${delay}ms`);
+});
+
+document.addEventListener('keydown', e => {
+    if (!recording) return;
+    const time = Date.now();
+    const delay = lastTime ? time - lastTime : 0;
+    lastTime = time;
+    events.push({ type: 'key', key: e.key, delay });
+    log(`按鍵：${e.key}, 延遲 ${delay}ms`);
+});
+
+document.getElementById('playMacro').onclick = async () => {
+    const loops = parseInt(document.getElementById('loopCount').value);
+    log("開始播放操作，循環 " + loops + " 次");
+    for (let l = 0; l < loops; l++) {
+        for (const ev of events) {
+            await new Promise(r => setTimeout(r, ev.delay));
+            if (ev.type === 'click') {
+                // 模擬點擊（只能在可點擊元素）
+                const el = document.elementFromPoint(ev.x, ev.y);
+                if (el) el.click();
+            } else if (ev.type === 'key') {
+                // 模擬鍵盤事件
+                const evt = new KeyboardEvent('keydown', {key: ev.key});
+                document.dispatchEvent(evt);
+            }
+        }
+    }
+    log("播放完成");
+};
+</script>
+
+</body>
+</html>
